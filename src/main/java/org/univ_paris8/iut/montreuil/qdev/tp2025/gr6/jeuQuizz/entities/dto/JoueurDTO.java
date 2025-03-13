@@ -24,4 +24,38 @@ public class JoueurDTO {
         this.score = new ScoreDTO();
         compteur++;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public String getPseudo() {
+        return pseudo;
+    }
+
+    public int getAnnéeNaissance() {
+        return annéeNaissance;
+    }
+
+    public ScoreDTO getScore() {
+        return score;
+    }
+
+    public Langue getLanguePrefere() {
+        return languePrefere;
+    }
+
+    public String getCentreInteret() {
+        return centreInteret;
+    }
+
+
 }
