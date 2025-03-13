@@ -1,17 +1,19 @@
 package org.univ_paris8.iut.montreuil.qdev.tp2025.gr6.jeuQuizz.entities.dto;
 
+import org.univ_paris8.iut.montreuil.qdev.tp2025.gr6.jeuQuizz.utils.enums.Langue;
+
 public class JoueurDTO {
-    protected int compteur = 0;
+    private static int compteur = 0;
     private int id;
     private String nom;
     private String prenom;
-    private int score;
+    private ScoreDTO score;
     private String pseudo;
     private int annéeNaissance;
     private String centreInteret;
-    private Enum languePrefere;
+    private Langue languePrefere;
 
-    public JoueurDTO(String nom,String prenom,String pseudo,int annéeNaissance,String centreInteret,Enum languePrefere) {
+    public JoueurDTO(String nom,String prenom,String pseudo,int annéeNaissance,String centreInteret,Langue languePrefere) {
         this.id = compteur;
         this.nom = nom;
         this.prenom = prenom;
@@ -19,7 +21,7 @@ public class JoueurDTO {
         this.annéeNaissance = annéeNaissance;
         this.centreInteret = centreInteret;
         this.languePrefere = languePrefere;
-        this.score = 0;
+        this.score = new ScoreDTO();
         compteur++;
     }
 }

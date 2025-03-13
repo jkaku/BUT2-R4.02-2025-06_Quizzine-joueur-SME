@@ -6,6 +6,13 @@ public class ScoreDTO {
     private int moyenneG;
     private int duréeG;
     private int dernierePartiejouee;
-    public ScoreDTO() {}
+
+    public ScoreDTO() {
+        this.nombrePartie = 0;
+        this.nombreBonneReponses = 0;
+        this.moyenneG = 0;
+        this.duréeG = 0;
+        this.dernierePartiejouee = 0;
+    }
 
 }
