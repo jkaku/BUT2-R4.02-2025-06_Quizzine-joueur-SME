@@ -15,4 +15,23 @@ public class ScoreDTO {
         this.dernierePartiejouee = 0;
     }
 
+    public int getDernierePartiejouee() {
+        return dernierePartiejouee;
+    }
+
+    public int getDuréeG() {
+        return duréeG;
+    }
+
+    public int getMoyenneG() {
+        return moyenneG;
+    }
+
+    public int getNombreBonneReponses() {
+        return nombreBonneReponses;
+    }
+
+    public int getNombrePartie() {
+        return nombrePartie;
+    }
 }

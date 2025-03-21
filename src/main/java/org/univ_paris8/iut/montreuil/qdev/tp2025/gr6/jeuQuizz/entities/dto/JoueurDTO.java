@@ -57,5 +57,6 @@ public class JoueurDTO {
         return centreInteret;
     }
 
-
+    @Override
+    public String toString() {return super.toString();}
 }
