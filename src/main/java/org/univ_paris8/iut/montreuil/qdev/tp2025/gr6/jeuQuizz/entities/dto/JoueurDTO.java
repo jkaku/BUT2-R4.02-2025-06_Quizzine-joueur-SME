@@ -2,6 +2,8 @@ package org.univ_paris8.iut.montreuil.qdev.tp2025.gr6.jeuQuizz.entities.dto;
 
 import org.univ_paris8.iut.montreuil.qdev.tp2025.gr6.jeuQuizz.utils.enums.Langue;
 
+import java.util.Objects;
+
 public class JoueurDTO {
     private static int compteur = 0;
     private int id;
@@ -55,6 +57,19 @@ public class JoueurDTO {
 
     public String getCentreInteret() {
         return centreInteret;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof JoueurDTO)) return false;
+        JoueurDTO joueurDTO = (JoueurDTO) o;
+        return id == joueurDTO.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 
     @Override
