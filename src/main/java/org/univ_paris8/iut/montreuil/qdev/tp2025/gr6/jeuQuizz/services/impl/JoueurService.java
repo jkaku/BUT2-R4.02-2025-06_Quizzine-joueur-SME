@@ -5,25 +5,57 @@ import org.univ_paris8.iut.montreuil.qdev.tp2025.gr6.jeuQuizz.entities.dto.Repon
 import org.univ_paris8.iut.montreuil.qdev.tp2025.gr6.jeuQuizz.entities.dto.ScoreDTO;
 import org.univ_paris8.iut.montreuil.qdev.tp2025.gr6.jeuQuizz.services.interfaces.JoueurInterface;
 import org.univ_paris8.iut.montreuil.qdev.tp2025.gr6.jeuQuizz.utils.enums.Langue;
-import org.univ_paris8.iut.montreuil.qdev.tp2025.gr6.jeuQuizz.utils.exceptions.NomAvecNombreException;
-import org.univ_paris8.iut.montreuil.qdev.tp2025.gr6.jeuQuizz.utils.exceptions.NomVideException;
+import org.univ_paris8.iut.montreuil.qdev.tp2025.gr6.jeuQuizz.utils.exceptions.*;
 
+import java.time.Year;
 import java.util.ArrayList;
 
 public class JoueurService implements JoueurInterface {
 
     @Override
-    public ReponseJoueurDTO ajouterJoueurDTO(String nom, String prenom,String pseudo, ScoreDTO score, int annéeNaissance, String centreInteret, Langue languePrefere) {
+    public ReponseJoueurDTO ajouterJoueurDTO(String nom, String prenom,String pseudo, int annéeNaissance, String centreInteret, Langue languePrefere) {
         ArrayList<Exception> listeExceptions = new ArrayList<>();
-        JoueurDTO joueur = null;
+        JoueurDTO j1 = null;
+
 
         try {
             if (nom.isEmpty()){
                 listeExceptions.add(new NomVideException());
-            } else if (nom.contains(0,1,2,3,4,5,6,7,8,9)) {
+            } else if (nom.matches(".*\\d.*")) {
                 listeExceptions.add(new NomAvecNombreException());
             }
+            
+            if (prenom.isEmpty()){
+                listeExceptions.add(new PrenomVideException());
+            } else if (prenom.matches(".*\\d.*")) {
+                listeExceptions.add(new NomAvecNombreException());
+            }
+            if (pseudo.isEmpty()){
+                listeExceptions.add(new PseudoVideException());
+            } else {
+                for (JoueurDTO joueur : JoueurDTO){
+                    if (joueur.getPseudo().equals(pseudo)){
+                        listeExceptions.add(new PseudoUtiliseException());
+                    }
+                }
+            }
+
+            if (annéeNaissance>1950 && annéeNaissance< Year.now().getValue()){
+                listeExceptions.add(new AnneeNaissanceEntre1950EtActuelleException());
+            }
+
+            if (centreInteret.isEmpty()){
+                listeExceptions.add(new CentreInteretVideException());
+            }
+
+            for (Langue languePrefere : Langue) {
+
+            }
+
+            if (languePrefere.name().){}
+
+
         }
-        ReponseJoueurDTO rep = new ReponseJoueurDTO(null,listeExceptions);
+        return new ReponseJoueurDTO(j1,listeExceptions);
     }
 }
