@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public class ReponseJoueurDTO {
     private int etat = 0;
     private JoueurDTO joueurRetourne;
-    private ArrayList<String> listeErreurs;
+    private ArrayList<Exception> listeErreurs;
 
-    public ReponseJoueurDTO(JoueurDTO joueurRetourne, ArrayList<String> listeErreurs) {
+    public ReponseJoueurDTO(JoueurDTO joueurRetourne, ArrayList<Exception> listeErreurs) {
         this.joueurRetourne = joueurRetourne;
         this.listeErreurs = listeErreurs;
     }
@@ -16,7 +16,7 @@ public class ReponseJoueurDTO {
         return joueurRetourne;
     }
 
-    public ArrayList<String> getListeErreurs() {
+    public ArrayList<Exception> getListeErreurs() {
         return listeErreurs;
     }
 
