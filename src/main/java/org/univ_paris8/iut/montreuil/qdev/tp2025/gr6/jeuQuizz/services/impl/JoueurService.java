@@ -8,7 +8,7 @@ import org.univ_paris8.iut.montreuil.qdev.tp2025.gr6.jeuQuizz.utils.enums.Langue
 public class JoueurService implements JoueurInterface {
 
     @Override
-    public ReponseJoueurDTO ajouterJoueurDTO(String nom, String prenom, ScoreDTO score, int annéeNaissance, String centreInteret, Langue languePrefere) {
+    public ReponseJoueurDTO ajouterJoueurDTO(String nom, String prenom,String pseudo, ScoreDTO score, int annéeNaissance, String centreInteret, Langue languePrefere) {
         return null;
     }
 }
