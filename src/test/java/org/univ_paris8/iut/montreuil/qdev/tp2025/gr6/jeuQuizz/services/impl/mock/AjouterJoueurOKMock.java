@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class AjouterJoueurOKMock implements JoueurInterface {
 
     @Override
-    public ReponseJoueurDTO ajouterJoueurDTO(String nom, String prenom, ScoreDTO score, int annéeNaissance, String centreInteret, Langue languePrefere) {
+    public ReponseJoueurDTO ajouterJoueurDTO(String nom, String prenom, String pseudo,ScoreDTO score, int annéeNaissance, String centreInteret, Langue languePrefere) {
         ReponseJoueurDTO retour = new ReponseJoueurDTO(new JoueurDTO(nom,prenom,"jkaku",annéeNaissance,centreInteret,languePrefere),new ArrayList<>());
         retour.getJoueurRetourne().setId(0);
         return retour;
