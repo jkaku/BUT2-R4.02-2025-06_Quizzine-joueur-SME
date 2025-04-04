@@ -7,6 +7,7 @@ import org.univ_paris8.iut.montreuil.qdev.tp2025.gr6.jeuQuizz.entities.dto.Score
 import org.univ_paris8.iut.montreuil.qdev.tp2025.gr6.jeuQuizz.services.impl.mock.*;
 import org.univ_paris8.iut.montreuil.qdev.tp2025.gr6.jeuQuizz.services.interfaces.JoueurInterface;
 import org.univ_paris8.iut.montreuil.qdev.tp2025.gr6.jeuQuizz.utils.enums.Langue;
+import org.univ_paris8.iut.montreuil.qdev.tp2025.gr6.jeuQuizz.utils.exceptions.*;
 
 import java.util.ArrayList;
 
@@ -22,57 +23,59 @@ class JoueurServiceTest {
     void ajouterJoueurOKDTO(){
         joueurService = new AjouterJoueurOKMock();
         res_attendu = new ReponseJoueurDTO(new JoueurDTO("Kaku","Jonathan","jkaku",2006,"Basket", Langue.fr),new ArrayList<>());
-        res = joueurService.ajouterJoueurDTO("Kaku","Jonathan",new ScoreDTO(),2006,"Basket", Langue.fr);
+        res = joueurService.ajouterJoueurDTO("Kaku","Jonathan","jkaku",new ScoreDTO(),2006,"Basket", Langue.fr);
         assertEquals(res_attendu,res);
     }
 
     @Test
     void ajouterJoueurNomPrenomVide(){
         joueurService = new AjouterJoueurNomOuPrenomVideMock();
-        ArrayList<String> erreurs = new ArrayList<>();
-        erreurs.add("Nom ou prénom vide");
+        ArrayList<Exception> erreurs = new ArrayList<>();
+        erreurs.add(new PrenomVideException());
+        erreurs.add(new NomVideException());
         res_attendu = new ReponseJoueurDTO(null,erreurs);
-        res = joueurService.ajouterJoueurDTO("","",new ScoreDTO(),2006,"Basket", Langue.fr);
+        res = joueurService.ajouterJoueurDTO("","","jkaku",new ScoreDTO(),2006,"Basket", Langue.fr);
         assertEquals(res_attendu,res);
     }
 
     @Test
     void ajouterJoueurNomPrenomAvecChiffres(){
         joueurService = new AjouterJoueurNomPrenomAvecChiffresMock();
-        ArrayList<String> erreurs = new ArrayList<>();
-        erreurs.add("Nom ou prénom contient des chiffres");
+        ArrayList<Exception> erreurs = new ArrayList<>();
+        erreurs.add(new NomAvecNombreException());
+        erreurs.add(new PrenomAvecNombreException());
         res_attendu = new ReponseJoueurDTO(null,erreurs);
-        res = joueurService.ajouterJoueurDTO("gg4r68","frfgr8",new ScoreDTO(),2006,"Basket", Langue.fr);
+        res = joueurService.ajouterJoueurDTO("gg4r68","frfgr8","jkaku",new ScoreDTO(),2006,"Basket", Langue.fr);
         assertEquals(res_attendu,res);
     }
 
     @Test
     void ajouterJoueurPseudoVide(){
         joueurService = new AjouterJoueurPseudoVideMock();
-        ArrayList<String> erreurs = new ArrayList<>();
-        erreurs.add("Pseudo vide");
+        ArrayList<Exception> erreurs = new ArrayList<>();
+        erreurs.add(new PseudoVideException());
         res_attendu = new ReponseJoueurDTO(null,erreurs);
-        res = joueurService.ajouterJoueurDTO("Jo","Ka",new ScoreDTO(),2006,"Basket", Langue.fr);
+        res = joueurService.ajouterJoueurDTO("Jo","Ka","jkaku",new ScoreDTO(),2006,"Basket", Langue.fr);
         assertEquals(res_attendu,res);
     }
 
     @Test
     void ajouterJoueurLangueInconnue(){
         joueurService = new AjouterJoueurLangueInconnueMock();
-        ArrayList<String> erreurs = new ArrayList<>();
-        erreurs.add("Langue préférée pas dans dictionnaire");
+        ArrayList<Exception> erreurs = new ArrayList<>();
+        erreurs.add(new LanguePasReconnuException());
         res_attendu = new ReponseJoueurDTO(null,erreurs);
-        res = joueurService.ajouterJoueurDTO("Jo","Ka",new ScoreDTO(),2006,"Basket", Langue.all);
+        res = joueurService.ajouterJoueurDTO("Jo","Ka","jkaku",new ScoreDTO(),2006,"Basket", Langue.all);
         assertEquals(res_attendu,res);
     }
 
     @Test
     void ajouterJoueurAnneeNaissanceImpossible(){
         joueurService = new AjouterJoueurAnneeNaissanceImpossibleMock();
-        ArrayList<String> erreurs = new ArrayList<>();
-        erreurs.add("La date de naissance doit être entre 1950 et l'année actuelle");
+        ArrayList<Exception> erreurs = new ArrayList<>();
+        erreurs.add(new AnneeNaissanceEntre1950EtActuelleException());
         res_attendu = new ReponseJoueurDTO(null,erreurs);
-        res = joueurService.ajouterJoueurDTO("Jo","Ka",new ScoreDTO(),2028,"Basket", Langue.all);
+        res = joueurService.ajouterJoueurDTO("Jo","Ka","jkaku",new ScoreDTO(),2028,"Basket", Langue.all);
         assertEquals(res_attendu,res);
     }
 
