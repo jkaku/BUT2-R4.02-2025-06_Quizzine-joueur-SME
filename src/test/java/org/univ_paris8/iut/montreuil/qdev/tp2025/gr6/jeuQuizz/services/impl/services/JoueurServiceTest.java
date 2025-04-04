@@ -23,7 +23,7 @@ class JoueurServiceTest {
     void ajouterJoueurOKDTO(){
         joueurService = new AjouterJoueurOKMock();
         res_attendu = new ReponseJoueurDTO(new JoueurDTO("Kaku","Jonathan","jkaku",2006,"Basket", Langue.fr),new ArrayList<>());
-        res = joueurService.ajouterJoueurDTO("Kaku","Jonathan","jkaku",new ScoreDTO(),2006,"Basket", Langue.fr);
+        res = joueurService.ajouterJoueurDTO("Kaku","Jonathan","jkaku",2006,"Basket", Langue.fr);
         assertEquals(res_attendu,res);
     }
 
@@ -34,7 +34,7 @@ class JoueurServiceTest {
         erreurs.add(new PrenomVideException());
         erreurs.add(new NomVideException());
         res_attendu = new ReponseJoueurDTO(null,erreurs);
-        res = joueurService.ajouterJoueurDTO("","","jkaku",new ScoreDTO(),2006,"Basket", Langue.fr);
+        res = joueurService.ajouterJoueurDTO("","","fsvsvs",2006,"Basket", Langue.fr);
         assertEquals(res_attendu,res);
     }
 
@@ -45,7 +45,7 @@ class JoueurServiceTest {
         erreurs.add(new NomAvecNombreException());
         erreurs.add(new PrenomAvecNombreException());
         res_attendu = new ReponseJoueurDTO(null,erreurs);
-        res = joueurService.ajouterJoueurDTO("gg4r68","frfgr8","jkaku",new ScoreDTO(),2006,"Basket", Langue.fr);
+        res = joueurService.ajouterJoueurDTO("gg4r68","frfgr8","fs",2006,"Basket", Langue.fr);
         assertEquals(res_attendu,res);
     }
 
@@ -55,7 +55,7 @@ class JoueurServiceTest {
         ArrayList<Exception> erreurs = new ArrayList<>();
         erreurs.add(new PseudoVideException());
         res_attendu = new ReponseJoueurDTO(null,erreurs);
-        res = joueurService.ajouterJoueurDTO("Jo","Ka","jkaku",new ScoreDTO(),2006,"Basket", Langue.fr);
+        res = joueurService.ajouterJoueurDTO("Jo","Ka","",2006,"Basket", Langue.fr);
         assertEquals(res_attendu,res);
     }
 
@@ -65,7 +65,7 @@ class JoueurServiceTest {
         ArrayList<Exception> erreurs = new ArrayList<>();
         erreurs.add(new LanguePasReconnuException());
         res_attendu = new ReponseJoueurDTO(null,erreurs);
-        res = joueurService.ajouterJoueurDTO("Jo","Ka","jkaku",new ScoreDTO(),2006,"Basket", Langue.all);
+        res = joueurService.ajouterJoueurDTO("Jo","Ka","fsfsd",2006,"Basket", Langue.all);
         assertEquals(res_attendu,res);
     }
 
@@ -75,7 +75,7 @@ class JoueurServiceTest {
         ArrayList<Exception> erreurs = new ArrayList<>();
         erreurs.add(new AnneeNaissanceEntre1950EtActuelleException());
         res_attendu = new ReponseJoueurDTO(null,erreurs);
-        res = joueurService.ajouterJoueurDTO("Jo","Ka","jkaku",new ScoreDTO(),2028,"Basket", Langue.all);
+        res = joueurService.ajouterJoueurDTO("Jo","Ka","fsjosfs",2028,"Basket", Langue.all);
         assertEquals(res_attendu,res);
     }
 

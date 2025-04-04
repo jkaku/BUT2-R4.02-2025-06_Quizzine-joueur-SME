@@ -50,13 +50,14 @@ public class JoueurService implements JoueurInterface {
             listeExceptions.add(new CentreInteretVideException());
         }
 
-        if (languePrefere.ordinal()<Langue.values().length){
+        if (languePrefere.ordinal()>Langue.values().length){
             listeExceptions.add(new LanguePasReconnuException());
         }
 
 
         if (listeExceptions.isEmpty()) {
             j1 = new JoueurDTO(nom, prenom, pseudo, annéeNaissance, centreInteret, languePrefere);
+            joueurs.add(j1);
         }
 
         return new ReponseJoueurDTO(j1,listeExceptions);
