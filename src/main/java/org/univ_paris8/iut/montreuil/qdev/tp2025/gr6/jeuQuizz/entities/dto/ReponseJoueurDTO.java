@@ -27,11 +27,11 @@ public class ReponseJoueurDTO {
         if (this == o) return true;
         if (!(o instanceof ReponseJoueurDTO)) return false;
         ReponseJoueurDTO that = (ReponseJoueurDTO) o;
-        return etat == that.etat && Objects.equals(joueurRetourne, that.joueurRetourne) && Objects.equals(listeErreurs, that.listeErreurs);
+        return Objects.equals(joueurRetourne, that.joueurRetourne) && Objects.equals(listeErreurs, that.listeErreurs);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(etat, joueurRetourne, listeErreurs);
+        return Objects.hash(joueurRetourne, listeErreurs);
     }
 }
