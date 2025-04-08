@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class AjouterJoueurNomOuPrenomVideMock implements JoueurInterface {
     @Override
-    public ReponseJoueurDTO ajouterJoueurDTO(String nom, String prenom,String pseudo, ScoreDTO score, int annéeNaissance, String centreInteret, Langue languePrefere) {
+    public ReponseJoueurDTO ajouterJoueurDTO(String nom, String prenom,String pseudo,  int annéeNaissance, String centreInteret, Langue languePrefere) {
         ArrayList<Exception> erreurs = new ArrayList<>();
         erreurs.add(new NomVideException());
         erreurs.add(new PrenomVideException());

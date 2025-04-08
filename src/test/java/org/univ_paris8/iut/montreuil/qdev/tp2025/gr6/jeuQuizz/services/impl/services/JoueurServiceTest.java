@@ -38,15 +38,18 @@ class JoueurServiceTest {
         assertEquals(res_attendu,res);
     }
 
+
     @Test
-    void ajouterJoueurNomPrenomAvecChiffres(){
+    void ajouterJoueurNomPrenomAvecChiffres() {
         joueurService = new AjouterJoueurNomPrenomAvecChiffresMock();
         ArrayList<Exception> erreurs = new ArrayList<>();
         erreurs.add(new NomAvecNombreException());
         erreurs.add(new PrenomAvecNombreException());
-        res_attendu = new ReponseJoueurDTO(null,erreurs);
-        res = joueurService.ajouterJoueurDTO("gg4r68","frfgr8","fs",2006,"Basket", Langue.fr);
-        assertEquals(res_attendu,res);
+
+        ReponseJoueurDTO res_attendu = new ReponseJoueurDTO(null, erreurs);
+        ReponseJoueurDTO res = joueurService.ajouterJoueurDTO("gg4r68", "frfgr8", "fs", 2006, "Basket", Langue.fr);
+
+        assertEquals(res_attendu, res); // Vérifie si equals fonctionne correctement
     }
 
     @Test
